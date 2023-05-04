@@ -4,14 +4,6 @@ import java.util.Random;
 
 public class SortingAlgorithms implements SortingStrategy{
 
-    private void showArray(int []num){
-        System.out.print(num[0]);
-        for (int i = 1; i < num.length; i++) {
-            System.out.print(" " + num[i]);
-        }
-        System.out.println();
-    }
-
     private void swap(int []num, int i, int j){
         int temp = num[i];
         num[i]=num[j];
@@ -230,10 +222,44 @@ public class SortingAlgorithms implements SortingStrategy{
         }
     }
 
+    @Override
     public void quickSort(int[] num) {
         int n = num.length;
 
         quickSort(num, 0, n - 1);
+    }
+
+    @Override
+    public void heapSort(int[] num) {
+        int n = num.length;
+
+        for (int i = n/2-1; i >0 ; i--) {
+            headAdjustment(num, n, i);
+        }
+
+        for (int i = n-1; i > 0  ; i--) {
+            swap(num, 0, i);
+            --n;
+            headAdjustment(num, n, 0);
+        }
+    }
+
+    private void headAdjustment(int []num, int heapSize, int parentIndex){
+        if (!(num.length ==0)){
+            int maxInd=parentIndex;
+            int leftChild=2*parentIndex+1;
+            int rightChild=2*parentIndex+2;
+
+            if (leftChild<heapSize && num[leftChild] > num[maxInd]){
+                maxInd=leftChild;
+            }if(rightChild<heapSize && num[rightChild] > num[maxInd]){
+                maxInd=rightChild;
+            }if(maxInd!=parentIndex){
+                swap(num, maxInd, parentIndex);
+                headAdjustment(num, heapSize, maxInd);
+            }
+        }
+
     }
 
     private void quickSort(int[] num, int left, int right) {

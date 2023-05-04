@@ -7,4 +7,5 @@ public interface SortingStrategy {
     void shakerSort(int []num);
     void bucketSort(int []num, int bucketSize);
     void quickSort(int []num);
+    void heapSort(int []num);
 }

@@ -12,6 +12,14 @@ public class TestOfSortingAlgorithms {
         return num;
     }
 
+    private static void showArray(int []num){
+        System.out.print(num[0]);
+        for (int i = 1; i < num.length; i++) {
+            System.out.print(" " + num[i]);
+        }
+        System.out.println();
+    }
+
     public static void main(String[] args) {
         testForBubbleSort(arr.clone());
         testForInsertSort(arr.clone());
@@ -21,6 +29,9 @@ public class TestOfSortingAlgorithms {
         testForShakerSort(arr.clone());
         testForQuickSort(arr.clone());
         testForBucketSort(arr.clone());
+        System.out.println();
+        testForHeapSort(arr.clone());
+
     }
 
     public static void testForBubbleSort(int []arr){
@@ -76,6 +87,13 @@ public class TestOfSortingAlgorithms {
         System.out.println("Bucket sort");
         long start = System.currentTimeMillis();
         strategy.bucketSort(arr, arr.length/2);
+        System.out.println(System.currentTimeMillis()-start+" ms\n");
+    }
+
+    public static void testForHeapSort(int [] arr){
+        System.out.println("Heap sort");
+        long start = System.currentTimeMillis();
+        strategy.heapSort(arr);
         System.out.println(System.currentTimeMillis()-start+" ms\n");
     }
 }
